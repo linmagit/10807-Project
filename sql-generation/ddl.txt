@@ -1,0 +1,52 @@
+New Table:
+order_line
+ol_w_id
+ol_d_id
+ol_o_id
+ol_number
+ol_i_id
+ol_supply_w_id
+New Table:
+new_order
+no_w_id
+no_d_id
+no_o_id
+New Table:
+stock
+s_w_id
+s_i_id
+s_order_cnt
+s_remote_cnt
+New Table:
+oorder
+o_w_id
+o_d_id
+o_id
+o_c_id
+o_carrier_id
+New Table:
+history
+h_c_id
+h_c_d_id
+h_c_w_id
+h_d_id
+h_w_id
+New Table:
+customer
+c_w_id
+c_d_id
+c_id
+c_payment_cnt
+c_delivery_cnt
+New Table:
+district
+d_w_id
+d_id
+d_next_o_id
+New Table:
+item
+i_id
+i_im_id
+New Table:
+warehouse
+w_id

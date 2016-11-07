@@ -28,12 +28,13 @@ def read_data_file(filename,skip_lines = 2):
 
 def vectorize_by_char(queries, num_features):
     """
-    Converts each query to an array of ids where id at index i represents
-    the ascii value of the character at index i of the query
+    Converts each query to a matrix where row i is a one hot representation
+    of the (i+1)th character in the query.
 
     :param queries: list of queries
     :param num_features: size of feature vector
     :return: Row-wise data matrix. #rows = #queries and #cols = num_features
+             and each element is a one hot vector of length 256
     """
     X = []
     for query in queries:
@@ -44,15 +45,17 @@ def vectorize_by_char(queries, num_features):
             vector += [0]*(num_features-len(vector))
         else:
             vector = vector[:num_features]
-        X.append(vector)
+        one_hot_mat = np.zeros((len(vector),256))
+        one_hot_mat[np.arange(len(vector)),np.array(vector)] = 1
+        X.append(one_hot_mat)
 
     return np.array(X)
 
 
 def vectorize_by_term(queries,num_features):
     """
-    Converts each query to an array of ids where id at index i
-    represents the token_id of the (i+1)th word in the query
+    Converts each query to a matrix where row i is a one hot representation
+    of the (i+1)th term in the query.
 
     :param queries: list of queries
     :param num_features: size of feature vector
@@ -70,6 +73,8 @@ def vectorize_by_term(queries,num_features):
             vector += [0]*(num_features-len(vector))
         else:
             vector = vector[:num_features]
+        one_hot_mat = np.zeros((len(vector),256))
+        one_hot_mat[np.arange(len(vector)),np.array(vector)] = 1
         X.append(vector)
 
     return np.array(X)
@@ -123,10 +128,10 @@ def map_ints_to_closest_vocab(queries,vocab):
 
 
 if __name__ == '__main__':
-    # num_features = 15
+    num_features = 100
     path = 'C:/Users/Avnish Saraf/Desktop/Deep Learning/Project/'
-    queries, labels = read_data_file(path+'data_10k.txt', skip_lines=1010)
-    X,vocab = get_bag_of_words(queries)
+    queries, labels = read_data_file(path+'data_10k.txt', skip_lines=2)
+    X = vectorize_by_char(queries, num_features)
 
     X.dump(open('data_mat_10k.pkl','wb'))
     labels = np.array(labels).reshape((len(labels), 1))
@@ -135,8 +140,8 @@ if __name__ == '__main__':
     print X.shape,labels.shape
 
     queries, labels = read_data_file(path+'data_10k_val.txt', skip_lines=2)
-    map_ints_to_closest_vocab(queries,vocab)
-    X, vocab = get_bag_of_words(queries,vocab)
+    # map_ints_to_closest_vocab(queries,vocab)
+    X = vectorize_by_char(queries,num_features)
 
     X.dump(open('data_mat_1k_val.pkl','wb'))
     labels = np.array(labels).reshape((len(labels), 1))

@@ -142,20 +142,44 @@ public class PelotonTest {
 		public void run() {
 			try {
 				Statement stmt = connection.createStatement();
-				int num_ops = 300;
+				int num_ops = 50000;
 
 				Random random = new Random();
-				//random.setSeed(new Date().getTime());
+				random.setSeed(new Date().getTime());
 				
 				for (int i = 0; i < num_ops; i++) {
 					RandomColumnPredicate predicate = 
 							GetRandomColumnPredicate(dict, min_dict, max_dict, random, null);
 					
 					String query = "select count(*) from " + predicate.table_ +
-							" where " + predicate.column_ + ">" + predicate.low_ +
-							" and " + predicate.column_ + "<" + predicate.high_;
-					ResultSet rs = stmt.executeQuery(query);
+							" where " + predicate.column_ + ">=" + predicate.low_ +
+							" and " + predicate.column_ + "<=" + predicate.high_;
 					
+					System.out.println(predicate.column_ + " " + predicate.low_ + " " + predicate.high_);
+
+					switch (query_type) {
+					case (SINGLE_COLUMN): {
+						query = query + ";";
+						break;
+					}
+					case (TWO_COLUMNS): {
+						RandomColumnPredicate predicate2 = 
+							GetRandomColumnPredicate(dict, min_dict, max_dict, random, predicate.table_);
+						query += " and " + predicate2.column_ + ">=" + predicate2.low_ +
+								" and " + predicate2.column_ + "<=" + predicate2.high_ + ";";
+						
+						if (predicate.column_.equals(predicate2.column_) &&
+								predicate.low_ == predicate2.low_ &&
+								predicate.high_ == predicate2.high_) {
+							System.out.println("hahahahha");
+							continue;
+						}
+
+						System.out.println(predicate2.column_ + " " + predicate2.low_ + " " + predicate2.high_);
+						break;
+					}
+					}
+					ResultSet rs = stmt.executeQuery(query);
 					
 					while (rs.next()) {
 						System.out.println(rs.getInt(1));

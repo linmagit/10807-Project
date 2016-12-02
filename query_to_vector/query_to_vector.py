@@ -6,7 +6,7 @@ import re
 TOKENIZER = re.compile('[^ ,.]+').findall
 
 
-def read_data_file(filename,skip_lines = 2):
+def read_data_file(filename, label_col=2, skip_lines = 2):
     """
     :param filename: name of the file to be read
     :param skip_lines: number of lines to skip at the start of the file
@@ -24,7 +24,7 @@ def read_data_file(filename,skip_lines = 2):
             query = cols[0].strip().lower()
             query = re.sub(r'([a-zA-Z0-9]*)([\W]+)([a-zA-Z0-9]*)', r'\1 \2 \3',query)
             queries.append(query)
-            labels.append(int(cols[2].strip()))
+            labels.append(cols[label_col].strip())
     return queries,labels
 
 
@@ -128,43 +128,46 @@ def map_ints_to_closest_vocab(queries,vocab):
         queries[i] = " ".join(tokens)
 
 
-def bucket_ints(queries, bucket_size = 1000):
+def bucket_ints(list_of_strings, bucket_size = 1000):
     """
     Bucket numbers in the queries of test/val set
     to the closest bucket based on bucket size.
-    :param queries: list of queries from test/val set
+    :param list_of_strings: list of queries/labels from test/val set
     :param bucket_sizet: Size of buckets
-    :return: list of modified queries
+    :return: list of modified queries/labels
     """
-    for i in range(len(queries)):
-        tokens = TOKENIZER(queries[i])
+    for i in range(len(list_of_strings)):
+        tokens = TOKENIZER(list_of_strings[i])
         for j in range(len(tokens)):
             if tokens[j].isdigit():
                 tokens[j] = str(bucket_size*((int(tokens[j])+(bucket_size/2))/bucket_size))
-        queries[i] = " ".join(tokens)
+        list_of_strings[i] = " ".join(tokens)
 
 
 if __name__ == '__main__':
     num_features = 100
     path = 'C:/Users/Avnish Saraf/Desktop/Deep Learning/Project/'
+
     queries, labels = read_data_file(path+'data_10k.txt', skip_lines=2)
     bucket_ints(queries)
+    bucket_ints(labels)
     X,vocab = vectorize_by_term(queries, num_features)
 
     print X.shape,len(labels)
 
     # X.dump(open('data_mat_10k.pkl','wb'))
-    # labels = np.array(labels).reshape((len(labels), 1))
+    # labels = np.array(map(int,labels)).reshape((len(labels), 1))
     # labels.dump(open('label_mat_10k.pkl', 'wb'))
 
     queries, labels = read_data_file(path+'data_10k_val.txt', skip_lines=2)
     bucket_ints(queries)
+    bucket_ints(labels)
     map_ints_to_closest_vocab(queries,vocab)
     X,_ = vectorize_by_term(queries,num_features,vocab)
 
     print X.shape,len(labels)
 
     # X.dump(open('data_mat_1k_val.pkl','wb'))
-    # labels = np.array(labels).reshape((len(labels), 1))
+    # labels = np.array(map(int,labels)).reshape((len(labels), 1))
     # labels.dump(open('label_mat_1k_val.pkl', 'wb'))
 

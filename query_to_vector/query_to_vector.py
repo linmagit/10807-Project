@@ -3,6 +3,8 @@ import numpy as np
 import sys
 import re
 
+TOKENIZER = re.compile('[^ ,.]+').findall
+
 
 def read_data_file(filename,skip_lines = 2):
     """
@@ -20,7 +22,7 @@ def read_data_file(filename,skip_lines = 2):
             cols = line.split('|')
             if len(cols) <= 1: continue
             query = cols[0].strip().lower()
-            query = re.sub(r'([a-zA-Z]*)([\W]+)([a-zA-Z]*)', r'\1 \2 \3',query)
+            query = re.sub(r'([a-zA-Z0-9]*)([\W]+)([a-zA-Z0-9]*)', r'\1 \2 \3',query)
             queries.append(query)
             labels.append(int(cols[2].strip()))
     return queries,labels
@@ -52,7 +54,7 @@ def vectorize_by_char(queries, num_features):
     return np.array(X)
 
 
-def vectorize_by_term(queries,num_features):
+def vectorize_by_term(queries,num_features,vocab = None):
     """
     Converts each query to a matrix where row i is a one hot representation
     of the (i+1)th term in the query.
@@ -61,7 +63,7 @@ def vectorize_by_term(queries,num_features):
     :param num_features: size of feature vector
     :return: Row-wise data matrix. #rows = #queries and #cols = num_features
     """
-    vectorizer = CountVectorizer(min_df=0,tokenizer=re.compile('[^ ,.]+').findall)
+    vectorizer = CountVectorizer(min_df=0,tokenizer=TOKENIZER,vocabulary=vocab)
     vectorizer.fit(queries)
     tokenize = vectorizer.build_tokenizer()
     X = []
@@ -73,11 +75,11 @@ def vectorize_by_term(queries,num_features):
             vector += [0]*(num_features-len(vector))
         else:
             vector = vector[:num_features]
-        one_hot_mat = np.zeros((len(vector),256))
+        one_hot_mat = np.zeros((len(vector),len(vectorizer.vocabulary_)))
         one_hot_mat[np.arange(len(vector)),np.array(vector)] = 1
-        X.append(vector)
+        X.append(one_hot_mat)
 
-    return np.array(X)
+    return np.array(X),vectorizer.vocabulary_
 
 
 def get_bag_of_words(queries, vocab = None):
@@ -89,10 +91,9 @@ def get_bag_of_words(queries, vocab = None):
     :return: Row-wise data matrix. #rows = #queries and #cols = vocabulary_size
              Vocabulary
     """
-    vectorizer = CountVectorizer(min_df=0,tokenizer=re.compile('[^ ,.]+').findall,strip_accents='unicode',vocabulary=vocab)
+    vectorizer = CountVectorizer(min_df=0,tokenizer=TOKENIZER,strip_accents='unicode',vocabulary=vocab)
     X = vectorizer.fit_transform(queries).todense()
-    vocab =  vectorizer.vocabulary_
-    return X,vocab
+    return X,vectorizer.vocabulary_
 
 
 def get_closest_value_from_vocab(num, vocab):
@@ -127,25 +128,43 @@ def map_ints_to_closest_vocab(queries,vocab):
         queries[i] = " ".join(tokens)
 
 
+def bucket_ints(queries, bucket_size = 1000):
+    """
+    Bucket numbers in the queries of test/val set
+    to the closest bucket based on bucket size.
+    :param queries: list of queries from test/val set
+    :param bucket_sizet: Size of buckets
+    :return: list of modified queries
+    """
+    for i in range(len(queries)):
+        tokens = TOKENIZER(queries[i])
+        for j in range(len(tokens)):
+            if tokens[j].isdigit():
+                tokens[j] = str(bucket_size*((int(tokens[j])+(bucket_size/2))/bucket_size))
+        queries[i] = " ".join(tokens)
+
+
 if __name__ == '__main__':
     num_features = 100
     path = 'C:/Users/Avnish Saraf/Desktop/Deep Learning/Project/'
     queries, labels = read_data_file(path+'data_10k.txt', skip_lines=2)
-    X = vectorize_by_char(queries, num_features)
+    bucket_ints(queries)
+    X,vocab = vectorize_by_term(queries, num_features)
 
-    X.dump(open('data_mat_10k.pkl','wb'))
-    labels = np.array(labels).reshape((len(labels), 1))
-    labels.dump(open('label_mat_10k.pkl', 'wb'))
+    print X.shape,len(labels)
 
-    print X.shape,labels.shape
+    # X.dump(open('data_mat_10k.pkl','wb'))
+    # labels = np.array(labels).reshape((len(labels), 1))
+    # labels.dump(open('label_mat_10k.pkl', 'wb'))
 
     queries, labels = read_data_file(path+'data_10k_val.txt', skip_lines=2)
-    # map_ints_to_closest_vocab(queries,vocab)
-    X = vectorize_by_char(queries,num_features)
+    bucket_ints(queries)
+    map_ints_to_closest_vocab(queries,vocab)
+    X,_ = vectorize_by_term(queries,num_features,vocab)
 
-    X.dump(open('data_mat_1k_val.pkl','wb'))
-    labels = np.array(labels).reshape((len(labels), 1))
-    labels.dump(open('label_mat_1k_val.pkl', 'wb'))
+    print X.shape,len(labels)
 
-    print X.shape,labels.shape
+    # X.dump(open('data_mat_1k_val.pkl','wb'))
+    # labels = np.array(labels).reshape((len(labels), 1))
+    # labels.dump(open('label_mat_1k_val.pkl', 'wb'))
 

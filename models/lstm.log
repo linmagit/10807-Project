@@ -1,0 +1,170 @@
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcublas.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcudnn.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcufft.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcurand.so locally
+training #: 9644 testing #: 1856
+test and training data loaded
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 0 with properties: 
+name: Tesla K40c
+major: 3 minor: 5 memoryClockRate (GHz) 0.745
+pciBusID 0000:07:00.0
+Total memory: 11.17GiB
+Free memory: 11.10GiB
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:972] DMA: 0 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 0:   Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla K40c, pci bus id: 0000:07:00.0)
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 1677 get requests, put_count=1137 evicted_count=1000 eviction_rate=0.879507 and unsatisfied allocation rate=0.977937
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:257] Raising pool_size_limit_ from 100 to 110
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 1677 get requests, put_count=2247 evicted_count=2000 eviction_rate=0.890076 and unsatisfied allocation rate=0.86285
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:257] Raising pool_size_limit_ from 193 to 212
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 0 get requests, put_count=1037 evicted_count=1000 eviction_rate=0.96432 and unsatisfied allocation rate=0
+1: training loss: 172019.859375, error:9643 Testing loss: 154511.0, error:1856
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 1677 get requests, put_count=2082 evicted_count=1000 eviction_rate=0.480307 and unsatisfied allocation rate=0.406679
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:257] Raising pool_size_limit_ from 958 to 1053
+2: training loss: 153129.078125, error:9643 Testing loss: 120289.257812, error:1856
+3: training loss: 143695.421875, error:9643 Testing loss: 122543.21875, error:1856
+4: training loss: 134860.9375, error:9643 Testing loss: 120042.554688, error:1856
+5: training loss: 121473.273438, error:9643 Testing loss: 120689.671875, error:1856
+6: training loss: 119517.710938, error:9643 Testing loss: 170520.59375, error:1856
+7: training loss: 120348.164062, error:9644 Testing loss: 157635.546875, error:1856
+8: training loss: 113625.703125, error:9644 Testing loss: 447483.875, error:1856
+9: training loss: 98770.71875, error:9644 Testing loss: 340483.1875, error:1856
+10: training loss: 94386.140625, error:9644 Testing loss: 425456.21875, error:1856
+11: training loss: 91127.03125, error:9644 Testing loss: 482210.15625, error:1856
+12: training loss: 89035.9375, error:9644 Testing loss: 411998.9375, error:1856
+13: training loss: 87430.7421875, error:9644 Testing loss: 452174.1875, error:1856
+14: training loss: 86069.90625, error:9644 Testing loss: 480436.4375, error:1856
+15: training loss: 84929.15625, error:9644 Testing loss: 495804.625, error:1856
+16: training loss: 83888.2578125, error:9644 Testing loss: 521187.4375, error:1856
+17: training loss: 83007.921875, error:9644 Testing loss: 530577.8125, error:1856
+18: training loss: 82271.828125, error:9372 Testing loss: 541733.625, error:1820
+19: training loss: 81385.0234375, error:9372 Testing loss: 543465.75, error:1820
+20: training loss: 80830.53125, error:9372 Testing loss: 545368.5, error:1820
+21: training loss: 80488.5078125, error:9372 Testing loss: 554573.5, error:1820
+22: training loss: 80862.546875, error:9372 Testing loss: 560309.5, error:1820
+23: training loss: 79343.9453125, error:9643 Testing loss: 548905.75, error:1856
+24: training loss: 78923.8046875, error:9643 Testing loss: 552378.5625, error:1856
+25: training loss: 78420.2421875, error:9643 Testing loss: 558404.625, error:1856
+26: training loss: 78074.453125, error:9643 Testing loss: 561577.5, error:1856
+27: training loss: 77667.546875, error:9120 Testing loss: 563747.3125, error:1791
+28: training loss: 77301.8515625, error:9120 Testing loss: 566180.125, error:1791
+29: training loss: 77003.296875, error:9117 Testing loss: 569030.5, error:1787
+30: training loss: 76649.8203125, error:9111 Testing loss: 569510.0, error:1786
+31: training loss: 76444.421875, error:9111 Testing loss: 571440.0, error:1785
+32: training loss: 76032.78125, error:8752 Testing loss: 570683.3125, error:1754
+33: training loss: 75783.328125, error:8754 Testing loss: 570391.875, error:1755
+34: training loss: 75641.890625, error:7711 Testing loss: 569406.0625, error:1611
+35: training loss: 75951.140625, error:7707 Testing loss: 568638.5, error:1611
+36: training loss: 154163.609375, error:9643 Testing loss: 241203.96875, error:1856
+37: training loss: 134076.984375, error:8813 Testing loss: 180655.65625, error:1764
+38: training loss: 112464.179688, error:8739 Testing loss: 187036.9375, error:1764
+39: training loss: 99208.5078125, error:8760 Testing loss: 186152.71875, error:1757
+40: training loss: 94858.65625, error:8835 Testing loss: 196826.734375, error:1772
+41: training loss: 91427.171875, error:8830 Testing loss: 202736.3125, error:1772
+42: training loss: 88785.2265625, error:9264 Testing loss: 207010.296875, error:1815
+43: training loss: 86735.015625, error:9046 Testing loss: 210943.84375, error:1779
+44: training loss: 85205.515625, error:9048 Testing loss: 214079.875, error:1780
+45: training loss: 84007.03125, error:8849 Testing loss: 216818.875, error:1746
+46: training loss: 83032.84375, error:8493 Testing loss: 219107.9375, error:1711
+47: training loss: 82202.96875, error:7452 Testing loss: 221983.90625, error:1565
+48: training loss: 81488.65625, error:7449 Testing loss: 225230.546875, error:1565
+49: training loss: 80876.46875, error:7438 Testing loss: 228371.1875, error:1564
+50: training loss: 80351.4296875, error:7427 Testing loss: 231135.390625, error:1561
+51: training loss: 79890.1640625, error:7422 Testing loss: 233989.40625, error:1561
+52: training loss: 79482.71875, error:7405 Testing loss: 236763.078125, error:1561
+53: training loss: 79115.90625, error:7389 Testing loss: 239250.609375, error:1554
+54: training loss: 78777.046875, error:7371 Testing loss: 241591.53125, error:1553
+55: training loss: 78451.859375, error:7120 Testing loss: 243851.453125, error:1528
+56: training loss: 78134.9453125, error:7104 Testing loss: 245928.296875, error:1526
+57: training loss: 77831.8671875, error:7119 Testing loss: 247850.9375, error:1527
+58: training loss: 77551.1328125, error:7128 Testing loss: 249588.3125, error:1526
+59: training loss: 77295.8046875, error:7114 Testing loss: 251167.5625, error:1525
+60: training loss: 77063.2890625, error:7103 Testing loss: 252638.4375, error:1522
+61: training loss: 76848.4375, error:7102 Testing loss: 253995.921875, error:1522
+62: training loss: 76642.6640625, error:6886 Testing loss: 255197.265625, error:1485
+63: training loss: 76426.5703125, error:6689 Testing loss: 256123.015625, error:1465
+64: training loss: 76161.7890625, error:6665 Testing loss: 256657.984375, error:1464
+65: training loss: 75804.4296875, error:6449 Testing loss: 257209.546875, error:1443
+66: training loss: 75373.3828125, error:6425 Testing loss: 259413.40625, error:1437
+67: training loss: 75036.3828125, error:6395 Testing loss: 263952.84375, error:1435
+68: training loss: 74846.7421875, error:6361 Testing loss: 267082.9375, error:1435
+69: training loss: 74720.640625, error:6158 Testing loss: 265145.28125, error:1410
+70: training loss: 74692.6640625, error:6325 Testing loss: 258299.28125, error:1441
+71: training loss: 74607.25, error:6309 Testing loss: 253663.5625, error:1432
+72: training loss: 74318.03125, error:6313 Testing loss: 258116.515625, error:1426
+73: training loss: 74061.515625, error:6041 Testing loss: 266273.6875, error:1403
+74: training loss: 73896.734375, error:6038 Testing loss: 271182.28125, error:1402
+75: training loss: 73856.40625, error:6245 Testing loss: 267271.21875, error:1436
+76: training loss: 73865.21875, error:6242 Testing loss: 260979.46875, error:1435
+77: training loss: 73848.21875, error:6244 Testing loss: 253449.34375, error:1435
+78: training loss: 73730.140625, error:6242 Testing loss: 248258.1875, error:1435
+79: training loss: 73383.4296875, error:6240 Testing loss: 258220.40625, error:1436
+80: training loss: 73117.1875, error:6231 Testing loss: 285516.15625, error:1385
+81: training loss: 73024.5546875, error:6204 Testing loss: 311439.6875, error:1377
+82: training loss: 72993.234375, error:6190 Testing loss: 312317.03125, error:1381
+83: training loss: 73132.546875, error:6175 Testing loss: 283302.90625, error:1431
+84: training loss: 73350.703125, error:6166 Testing loss: 245773.671875, error:1428
+85: training loss: 72911.078125, error:6219 Testing loss: 257038.28125, error:1434
+86: training loss: 72541.0234375, error:6256 Testing loss: 316238.53125, error:1389
+87: training loss: 72444.984375, error:6234 Testing loss: 356531.1875, error:1384
+88: training loss: 72349.4921875, error:6207 Testing loss: 350298.625, error:1379
+89: training loss: 72385.1875, error:6440 Testing loss: 320545.84375, error:1394
+90: training loss: 72443.828125, error:6433 Testing loss: 283751.53125, error:1395
+91: training loss: 72283.65625, error:6453 Testing loss: 295246.9375, error:1400
+92: training loss: 72116.0234375, error:6464 Testing loss: 335963.0, error:1396
+93: training loss: 72022.703125, error:6451 Testing loss: 366797.25, error:1394
+94: training loss: 71961.984375, error:6438 Testing loss: 374842.28125, error:1394
+95: training loss: 71917.90625, error:6430 Testing loss: 372970.21875, error:1396
+96: training loss: 71879.0859375, error:6415 Testing loss: 370560.25, error:1391
+97: training loss: 71838.546875, error:6404 Testing loss: 370869.25, error:1392
+98: training loss: 71798.328125, error:6385 Testing loss: 373085.8125, error:1388
+99: training loss: 71761.8203125, error:6383 Testing loss: 375478.875, error:1381
+100: training loss: 71731.7578125, error:6363 Testing loss: 376315.625, error:1376
+101: training loss: 71701.0703125, error:6331 Testing loss: 377026.5625, error:1375
+102: training loss: 71651.046875, error:6305 Testing loss: 383466.0, error:1372
+103: training loss: 71582.390625, error:6251 Testing loss: 396602.59375, error:1364
+104: training loss: 71513.546875, error:5723 Testing loss: 410046.1875, error:1293
+105: training loss: 71449.421875, error:5667 Testing loss: 420259.40625, error:1289
+106: training loss: 71385.0859375, error:5456 Testing loss: 427864.875, error:1267
+107: training loss: 71321.5625, error:5416 Testing loss: 434213.03125, error:1260
+108: training loss: 71263.703125, error:5344 Testing loss: 440154.53125, error:1252
+109: training loss: 71210.8671875, error:5326 Testing loss: 445674.21875, error:1251
+110: training loss: 71170.4453125, error:5307 Testing loss: 449318.875, error:1244
+111: training loss: 71168.234375, error:5283 Testing loss: 449037.75, error:1243
+112: training loss: 71177.390625, error:5276 Testing loss: 448277.65625, error:1243
+113: training loss: 71192.2734375, error:5274 Testing loss: 445925.375, error:1243
+114: training loss: 71231.1875, error:5710 Testing loss: 438679.1875, error:1293
+115: training loss: 71292.859375, error:5904 Testing loss: 419940.65625, error:1318
+116: training loss: 71114.2578125, error:5267 Testing loss: 443656.1875, error:1242
+117: training loss: 70906.171875, error:5261 Testing loss: 465025.59375, error:1249
+118: training loss: 70804.6796875, error:5277 Testing loss: 482175.9375, error:1247
+119: training loss: 70879.140625, error:4805 Testing loss: 491562.75, error:1201
+120: training loss: 70846.234375, error:5016 Testing loss: 492215.6875, error:1221
+121: training loss: 70693.203125, error:5220 Testing loss: 494393.4375, error:1256
+122: training loss: 70689.296875, error:5225 Testing loss: 493352.75, error:1255
+123: training loss: 70579.9296875, error:4896 Testing loss: 495300.71875, error:1211
+124: training loss: 70510.328125, error:5076 Testing loss: 494128.3125, error:1229
+125: training loss: 70463.8984375, error:5068 Testing loss: 494449.625, error:1227
+126: training loss: 70416.09375, error:4614 Testing loss: 496240.875, error:1188
+127: training loss: 70369.390625, error:4813 Testing loss: 496943.65625, error:1207
+128: training loss: 70334.3828125, error:4813 Testing loss: 498851.1875, error:1207
+129: training loss: 70294.890625, error:4827 Testing loss: 501542.125, error:1208
+130: training loss: 70250.0859375, error:4610 Testing loss: 501894.375, error:1188
+131: training loss: 70202.390625, error:4602 Testing loss: 501822.03125, error:1193
+132: training loss: 70157.9765625, error:4598 Testing loss: 504218.0625, error:1192
+133: training loss: 70121.59375, error:4607 Testing loss: 508858.21875, error:1189
+134: training loss: 70191.15625, error:4418 Testing loss: 514657.5625, error:1152
+135: training loss: 71718.8125, error:4415 Testing loss: 514388.4375, error:1142
+136: training loss: 106715.664062, error:7422 Testing loss: 190591.796875, error:1583
+137: training loss: 88737.5859375, error:7722 Testing loss: 181169.921875, error:1634
+138: training loss: 82584.5625, error:7590 Testing loss: 191333.484375, error:1607
+139: training loss: 80910.2734375, error:6242 Testing loss: 198938.8125, error:1394
+140: training loss: 79038.7890625, error:6937 Testing loss: 195347.90625, error:1472
+141: training loss: 77759.734375, error:6374 Testing loss: 197525.890625, error:1420
+142: training loss: 76950.078125, error:6370 Testing loss: 197014.6875, error:1423
+143: training loss: 76308.84375, error:6588 Testing loss: 198745.65625, error:1438
+144: training loss: 75775.65625, error:6586 Testing loss: 200130.328125, error:1437
+145: training loss: 75327.09375, error:6575 Testing loss: 200016.90625, error:1435
+146: training loss: 74935.0859375, error:6571 Testing loss: 200016.40625, error:1439
+147: training loss: 74593.9375, error:6551 Testing loss: 199427.078125, error:1436

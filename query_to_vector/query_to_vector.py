@@ -219,7 +219,7 @@ if __name__ == '__main__':
 
     # convert queries to BOW vectors
     # X,_ = get_bag_of_words(val_queries,vocab)
-    
+
     val_labels = np.array(map(int, val_labels))
     # one hot vector length should be same as the training label one-hot vector
     one_hot_mat = np.zeros((len(val_labels), one_hot_dim))
